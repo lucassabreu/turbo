@@ -11,6 +11,7 @@ cd "$GITHUB_WORKSPACE"
 package_name="$(jq -r .name package.json)"
 package_files=( dist package.json )
 tag="${package_name}/${GITHUB_SHA:0:7}"
+tag2="build-dev/${GITHUB_SHA:0:7}"
 
 name="$(git log -n 1 --format=format:%cn)"
 email="$(git log -n 1 --format=format:%ce)"
@@ -33,6 +34,7 @@ GIT_AUTHOR_EMAIL="$email" GIT_COMMITTER_EMAIL="$email" \
   git commit -m "$message"
 
 git tag "$tag"
+git tag "$tag2"
 [ "$GITHUB_REF" != "refs/heads/main" ] || git tag -f "${package_name}/latest"
 git push -f --tags
 
