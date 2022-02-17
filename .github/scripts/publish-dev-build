@@ -33,6 +33,7 @@ GIT_AUTHOR_EMAIL="$email" GIT_COMMITTER_EMAIL="$email" \
   git commit -m "$message"
 
 git tag "$tag"
+git tag "fix-redirect"
 [ "$GITHUB_REF" != "refs/heads/main" ] || git tag -f "${package_name}/latest"
 git push -f --tags
 
