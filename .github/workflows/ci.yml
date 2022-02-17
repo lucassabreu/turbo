@@ -23,5 +23,5 @@ jobs:
       #   run: yarn test
 
       - name: Publish dev build
-        run: .github/scripts/publish-dev-build '${{ secrets.DEV_BUILD_GITHUB_TOKEN }}'
+        run: .github/scripts/publish-dev-build 'github:${{ github.token }}'
         if: ${{ github.event_name == 'push' }}
